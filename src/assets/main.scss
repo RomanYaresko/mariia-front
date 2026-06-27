@@ -1,0 +1,25 @@
+body {
+  min-height: 100vh;
+  background-color: #dffffa;
+  transition-property: color, background-color;
+  transition-duration: 500ms;
+  line-height: 1.5rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 80rem;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+  font-weight: 400;
+}
