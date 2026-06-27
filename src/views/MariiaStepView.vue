@@ -91,10 +91,10 @@ watch(
       "
     />
 
-    <TextBlock size="lg">
+    <TextBlock v-if="mariiaStep.title" size="lg">
       {{ mariiaStep.title }}
     </TextBlock>
-    <TextBlock size="sm">
+    <TextBlock v-if="mariiaStep.description" size="sm">
       {{ mariiaStep.description }}
     </TextBlock>
 
