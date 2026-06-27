@@ -10,4 +10,5 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
+declare module '*.vue'
 declare module '*.scss'
