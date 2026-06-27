@@ -4,7 +4,7 @@
       v-for="heart in hearts"
       :key="heart.id"
       :src="heart.src"
-      class="heart"
+      class="heart border border-accent rounded-md"
       :style="{
         left: `${heart.left}%`,
         width: `${heart.size}px`,
@@ -50,10 +50,6 @@ const hearts = Array.from({ length: 50 }, (_, i) => ({
   position: absolute;
   top: -80px;
   user-select: none;
-
-  filter: drop-shadow(1px 0 white) drop-shadow(-1px 0 white) drop-shadow(0 1px white)
-    drop-shadow(0 -1px white);
-
   animation: fall linear infinite;
 }
 

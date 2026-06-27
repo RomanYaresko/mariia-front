@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), { type: 'button', disabled: false })
   <button
     :type="type"
     :disabled="disabled"
-    :class="`${disabled ? 'opacity-20 pointer-events-none' : ''} z-10 block w-full rounded-md border border-pink-200 bg-pink-100 px-3 py-2 font-bold text-pink-700 shadow-sm cursor-pointer transition-all duration-200`"
+    :class="`${disabled ? 'opacity-20 pointer-events-none' : ''} z-10 block w-full rounded-md border-2 border-blush hover:border-accent bg-soft px-3 py-2 font-bold text-white shadow-sm cursor-pointer transition-all duration-200`"
   >
     {{ label }}
   </button>

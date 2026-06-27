@@ -16,8 +16,10 @@ const route = useRoute()
 const mariiaStep = ref<MariiaStep | null>(null)
 const isFoundGiftModalVisible = ref<boolean>(false)
 const isNotifyLoading = ref<boolean>(false)
+const isStepLoading = ref<boolean>(false)
 
 const fetchMariiaStep = async (id: number) => {
+  isStepLoading.value = true
   try {
     const response = await getMariiaStepById(id)
     if (response.success) {
@@ -27,6 +29,8 @@ const fetchMariiaStep = async (id: number) => {
     }
   } catch (error) {
     console.log(error)
+  } finally {
+    isStepLoading.value = false
   }
 }
 
@@ -70,7 +74,6 @@ watch(
   () => route.params.id,
   async (stepId) => {
     const parsedId = Number(stepId)
-    mariiaStep.value = null
     await fetchMariiaStep(parsedId)
   },
   { immediate: true }
@@ -102,12 +105,14 @@ watch(
       v-if="mariiaStep.prevId"
       :label="GENERAL_MESSAGES.BACK"
       @click="redirectToPrevMariiaStep()"
+      :disabled="isStepLoading"
     />
 
     <AppButton
       v-if="mariiaStep.nextId && !mariiaStep.isGift"
       :label="mariiaStep.buttonText"
       @click="redirectToNextMariiaStep()"
+      :disabled="isStepLoading"
     />
 
     <AppButton

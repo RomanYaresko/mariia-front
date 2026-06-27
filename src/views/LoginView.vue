@@ -9,6 +9,7 @@ import { loginRequest } from '@/requests/auth/login.request'
 import { toast } from 'vue3-toastify'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user.store'
+import { ref } from 'vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -17,6 +18,7 @@ const loginFormSchema = toTypedSchema(LoginPayloadSchema)
 const { handleSubmit } = useForm({
   validationSchema: loginFormSchema
 })
+const isLoading = ref<boolean>(false)
 
 const usernameField = useField<string>('username')
 const passwordField = useField<string>('password')
@@ -38,6 +40,7 @@ const processLoginResponse = async (response: LoginResponse) => {
 }
 
 const onSubmit = handleSubmit((values) => {
+  isLoading.value = true
   loginRequest(values)
     .then(async (response) => {
       await processLoginResponse(response)
@@ -45,15 +48,18 @@ const onSubmit = handleSubmit((values) => {
     .catch((error) => {
       console.error(error)
     })
+    .finally(() => {
+      isLoading.value = false
+    })
 })
 </script>
 
 <template>
-  <form @submit="onSubmit" class="h-full">
+  <form @submit="onSubmit" class="bg-white/90 p-5 rounded-md h-full">
     <div class="flex flex-col items-start justify-center gap-4 h-full">
       <InputField :field-context="usernameField" :label="AUTH_MESSAGES.USERNAME" />
       <InputField :field-context="passwordField" :label="AUTH_MESSAGES.PASSWORD" />
-      <AppButton type="submit" :label="AUTH_MESSAGES.LOGIN" />
+      <AppButton type="submit" :label="AUTH_MESSAGES.LOGIN" :disabled="isLoading" />
     </div>
   </form>
 </template>

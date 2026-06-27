@@ -25,12 +25,12 @@ const emit = defineEmits<{
   >
     <div
       v-if="isVisible"
-      class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-pink-200"
+      class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-faded"
     >
       <div class="flex flex-col items-center justify-center gap-2">
         <div class="relative w-80 h-80 flex items-center justify-center">
           <div
-            class="z-10 flex items-center justify-center text-center w-20 h-20 bg-pink-100 border border-pink-400 shadow font-bold text-sm rounded-full"
+            class="z-10 flex items-center justify-center text-center w-20 h-20 bg-soft border border-accent font-bold text-sm rounded-full text-white"
           >
             {{ text }}
           </div>
